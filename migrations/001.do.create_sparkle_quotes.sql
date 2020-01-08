@@ -1,5 +1,5 @@
 CREATE TABLE sparkle_quotes (
-    id INTEGER AS IDENTITY,
+    quoteId INTEGER,
     quote TEXT NOT NULL,
     author TEXT,
     used INTEGER

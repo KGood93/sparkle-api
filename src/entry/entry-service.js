@@ -1,6 +1,8 @@
 const entryService = {
     getAllEntry(knex) {
-        return knex.select('*').from('sparkle_entry')
+        return knex
+            .select('*')
+            .from('sparkle_entry')
     },
     insertEntry(knex, newEntry) {
         return knex

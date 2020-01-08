@@ -14,4 +14,4 @@ INSERT INTO sparkle_quotes (quoteId, quote, author, used)
         ( 012 ,'Do not ever quit out of fear of rejection.', 'J.K. Rowling', 0),
         ( 013 ,'Read a lot. Reading really helps. Read anything you can get your hands on.', 'J.K. Rowling', 0),
         ( 014 ,'Anything is possible if youve got enough nerve.', 'J.K. Rowling', 0),
-        ( 015 ,'The world is full of wonderful things you havent seen yet. Dont ever give up on the chance of seeing them.', 'J.K. Rowling', 0),
+        ( 015 ,'The world is full of wonderful things you havent seen yet. Dont ever give up on the chance of seeing them.', 'J.K. Rowling', 0)

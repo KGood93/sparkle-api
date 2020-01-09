@@ -41,4 +41,51 @@ entryRouter
             .catch(next)
     })
 
+entryRouter
+    .route("/:entryId")
+    .all((req, res, next) => {
+        entryService.getById(req.app.get('db'), req.params.entryId)
+            .then(entry => {
+                if (!entry) {
+                    return res.status(404).json({
+                        error: {message: `Entry doesn't exist`}
+                    })
+                }
+                res.entry = entry
+                    next()
+            })
+            .catch(next)
+    })
+    .get((req, res, next) => {
+        res.json(serializeEntry(res.entry))
+    })
+    .delete((req, res, next) => {
+        entryService.deleteEntry(req.app.get('db'), req.params.entryId)
+            .then(numRowsAffected => {
+                res.status(204).end()
+            })
+            .catch(next)
+    })
+    .patch(jsonParser, (req, res, next) => {
+        const {content} = req.body
+        const entryToUpdate = {content}
+
+        const numberofValues = Object.values(entryToUpdate).filter(Boolean).length
+
+        if(numberofValues === 0)
+            return res.status(400).json({
+                error: {message: `Request body is missing required fields`}
+            })
+
+        entryService.updateEntry(
+            req.app.get('db'),
+            req.params.entryId,
+            entryToUpdate
+        )
+            .then(numRowsAffected => {
+                res.status(204).end()
+            })
+            .catch(next)
+    })
+
 module.exports = entryRouter

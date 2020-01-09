@@ -6,10 +6,11 @@ const entryService = require('./entry-service')
 const entryRouter = express.Router()
 
 const serializeEntry = entry => ({
-    entryId : entry.entryId,
-    name: xss(entry.name),
+    entryId : entry.entryid,
+    title: xss(entry.title),
     content: xss(entry.content),
-    journalId: entry.journalId
+    quoteId : entry.quoteid,
+    journalId: entry.journalid
 });
 
 entryRouter
@@ -57,6 +58,7 @@ entryRouter
             .catch(next)
     })
     .get((req, res, next) => {
+        //console.log(res.entry)
         res.json(serializeEntry(res.entry))
     })
     .delete((req, res, next) => {

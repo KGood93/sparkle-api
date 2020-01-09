@@ -13,11 +13,11 @@ const entryService = {
                 return rows[0]
             })
     },
-    getById(knex, entryId) {
+    getById(knex, entryid) {
         return knex
             .from('sparkle_entry')
             .select('*')
-            .where('entryId', entryId)
+            .where('entryid', entryid)
             .first()
     },
     deleteEntry(knex, entryId) {

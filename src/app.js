@@ -8,7 +8,6 @@ const entryRouter = require('./entry/entry-router')
 
 const app = express()
 
-
 const morganOption = (NODE_ENV === 'production')
     ? 'tiny'
     : 'common';
@@ -17,7 +16,7 @@ app.use(morgan(morganOption))
 app.use(helmet())
 app.use(cors({origin: CLIENT_ORIGIN}))
 
-//app.use('/entry', entryRouter)
+app.use('/entry', entryRouter)
 
 app.get('/', (req, res) => {
     res.send('Hello, world!')

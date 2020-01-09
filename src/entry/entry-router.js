@@ -21,3 +21,24 @@ entryRouter
             })
             .catch(next)
     })
+    .post(jsonParser, (req, res, next) => {
+        const {name, journalId, content} = req.body
+        const newEntry = {name, journalId, content}
+
+        for(const [key, value] of Object.entries(newEntry))
+            if(value == null)
+                return res.status(400).json({
+                    error: {message: `Missing '${key}' in request body`}
+                })
+        
+        entryService.insertEntry(req.app.get('db'), newEntry)
+            .then(entry => {
+                res
+                    .status(201)
+                    .location(path.posix.join(req.originalUrl), `/${entry.entryId}`)
+                    .json(serializeEntry(entry))
+            })
+            .catch(next)
+    })
+
+module.exports = entryRouter

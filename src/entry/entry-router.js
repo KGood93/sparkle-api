@@ -12,3 +12,12 @@ const serializeEntry = entry => ({
     journalId: entry.journalId
 });
 
+entryRouter
+    .route("/")
+    .get((req, res, next) => {
+        entryService.getAllEntry(req.app.get('db'))
+            .then(entry => {
+                res.json(entry)
+            })
+            .catch(next)
+    })

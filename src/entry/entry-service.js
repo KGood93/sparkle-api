@@ -20,10 +20,10 @@ const entryService = {
             .where('entryid', entryid)
             .first()
     },
-    deleteEntry(knex, entryId) {
+    deleteEntry(knex, entryid) {
         return knex
             .from('sparkle_entry')
-            .where({entryId})
+            .where('entryid', entryid)
             .delete()
     },
     updateEntry(knex, entryId, newEntryFields) {

@@ -6,6 +6,7 @@ const helmet = require('helmet')
 const {NODE_ENV, CLIENT_ORIGIN} = require('./config')
 const entryRouter = require('./entry/entry-router')
 const journalRouter = require('./journal/journal-router')
+const quoteRouter = require('./quotes/quote-router')
 
 const app = express()
 
@@ -21,6 +22,7 @@ app.use(cors())
 
 app.use('/entry', entryRouter)
 app.use('/journal', journalRouter)
+app.use('/quote', quoteRouter)
 
 app.get('/', (req, res) => {
     res.send('Hello, world!')

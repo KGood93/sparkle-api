@@ -7,6 +7,8 @@ const {NODE_ENV, CLIENT_ORIGIN} = require('./config')
 const entryRouter = require('./entry/entry-router')
 const journalRouter = require('./journal/journal-router')
 const quoteRouter = require('./quotes/quote-router')
+const authRouter = require('./auth/auth-router')
+const usersRouter = require('./users/users-router')
 
 const app = express()
 
@@ -23,6 +25,8 @@ app.use(cors())
 app.use('/entry', entryRouter)
 app.use('/journal', journalRouter)
 app.use('/quote', quoteRouter)
+app.use('/auth', authRouter)
+app.use('/users', usersRouter)
 
 app.get('/', (req, res) => {
     res.send('Hello, world!')

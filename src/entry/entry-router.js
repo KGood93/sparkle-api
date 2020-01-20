@@ -23,8 +23,8 @@ entryRouter
             .catch(next)
     })
     .post(jsonParser, (req, res, next) => {
-        const {name, journalId, content} = req.body
-        const newEntry = {name, journalId, content}
+        const {title, journalid, content, quoteid} = req.body
+        const newEntry = {title, journalid, content, quoteid}
 
         for(const [key, value] of Object.entries(newEntry))
             if(value == null)

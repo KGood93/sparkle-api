@@ -6,7 +6,7 @@ const entryService = {
     },
     insertEntry(knex, newEntry) {
         return knex
-            .inser(newEntry)
+            .insert(newEntry)
             .into('sparkle_entry')
             .returning('*')
             .then(rows => {

@@ -1,3 +1,3 @@
-INSERT INTO psql -U Katy -d sparkle-api -f ./seeds/seed.sparkle_journal.sql (journalId)
+INSERT INTO sparkle_journal(journalId, userId, journalTitle)
     VALUES
-        (100)
+        (100, 2, 'Test Journal')

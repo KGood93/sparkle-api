@@ -3,6 +3,6 @@ CREATE TABLE sparkle_entry (
     title TEXT NOT NULL, 
     date TIMESTAMP DEFAULT now() NOT NULL,
     content TEXT NOT NULL,
-    journalId INTEGER REFERENCES sparkle_journal(journalId) ON DELETE CASCADE NOT NULL,
+    journalId uuid REFERENCES sparkle_journal(journalId) ON DELETE CASCADE NOT NULL,
     quoteId INTEGER REFERENCES sparkle_quotes(quoteId)
 );

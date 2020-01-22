@@ -3,9 +3,9 @@ const jwt = require('jsonwebtoken')
 const config = require('../config')
 
 const AuthService = {
-    getUserWithUserName(db, user_name) {
-        return db('blogful_users')
-            .where({user_name})
+    getUserWithUserName(db, username) {
+        return db('sparkle_users')
+            .where({username})
             .first()
     },
     comparePasswords(password, hash) {
@@ -28,3 +28,5 @@ const AuthService = {
         
     }
 }
+
+module.exports = AuthService

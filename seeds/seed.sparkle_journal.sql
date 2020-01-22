@@ -1,3 +1,3 @@
-INSERT INTO sparkle_journal(journalId, userId, journalTitle)
+INSERT INTO sparkle_journal(userId, journalTitle)
     VALUES
-        (100, 2, 'Test Journal')
+        ( '03ac6554-a3d9-4763-b546-b343bee7d392', 'Test Journal')

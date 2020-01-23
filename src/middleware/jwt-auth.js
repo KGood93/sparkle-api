@@ -34,7 +34,14 @@ function requireAuth(req, res, next) {
         res.status(401).json({error: 'Unauthorized request'})
     }
 }
+function makeAuthHeader(user, secret = process.env.JWT_SECRET) {
+    const token = jwt.sign({userid: user.id}, secret, {
+        subject: user.username,
+        algorithm: 'HS256',
+    })
+    return `Bearer ${token}`
+}
 
 module.exports = {
-    requireAuth,
+    requireAuth, makeAuthHeader
 }

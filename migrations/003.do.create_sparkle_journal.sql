@@ -9,11 +9,16 @@ CREATE OR REPLACE FUNCTION add_journal()
     RETURNS trigger AS
 $Body$
 BEGIN
-    IF NEW userId THEN
-        INSERT INTO sparkle_journal(userId)
-        VALUES(NEW.userId);
-    END IF;
+    INSERT INTO sparkle_journal(userId)
+    VALUES(NEW.userId);
 
     RETURN NEW;
 END;
 $Body$
+LANGUAGE 'plpgsql';
+
+CREATE TRIGGER new_journal
+  AFTER INSERT
+  ON sparkle_users
+  FOR EACH ROW
+  EXECUTE PROCEDURE add_journal();

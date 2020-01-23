@@ -7,3 +7,9 @@ CREATE TABLE sparkle_users (
   date_created TIMESTAMP DEFAULT now() NOT NULL,
   date_modified TIMESTAMP
 );
+
+CREATE TRIGGER new_journal
+  AFTER UPDATE
+  ON sparkle_users
+  FOR EACH ROW
+  EXECUTE PROCEDURE add_journal();

@@ -4,3 +4,16 @@ CREATE TABLE sparkle_journal (
     journalTitle TEXT, 
     entryCount INTEGER
 );
+
+CREATE OR REPLACE FUNCTION add_journal()
+    RETURNS trigger AS
+$Body$
+BEGIN
+    IF NEW userId THEN
+        INSERT INTO sparkle_journal(userId)
+        VALUES(NEW.userId);
+    END IF;
+
+    RETURN NEW;
+END;
+$Body$

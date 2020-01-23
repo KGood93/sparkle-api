@@ -4,6 +4,7 @@ const xss = require('xss')
 const jsonParser = express.json()
 const entryService = require('./entry-service')
 const entryRouter = express.Router()
+const {requireAuth} = require('../middleware/jwt-auth')
 
 const serializeEntry = entry => ({
     entryId : entry.entryid,
@@ -15,6 +16,7 @@ const serializeEntry = entry => ({
 
 entryRouter
     .route("/")
+    .all(requireAuth)
     .get((req, res, next) => {
         entryService.getAllEntry(req.app.get('db'))
             .then(entry => {
@@ -44,6 +46,7 @@ entryRouter
 
 entryRouter
     .route("/:entryId")
+    .all(requireAuth)
     .all((req, res, next) => {
         entryService.getById(req.app.get('db'), req.params.entryId)
             .then(entry => {

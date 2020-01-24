@@ -13,7 +13,6 @@ const serializeJournal = journal => ({
 
 journalRouter
     .route('/:journalId')
-    .all(requireAuth)
     .all((req, res, next) => {
         journalService.getById(req.app.get('db'), req.params.journalId)
         .then(journal => {

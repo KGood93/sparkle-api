@@ -16,6 +16,7 @@ const serializeEntry = entry => ({
 
 entryRouter
     .route("/")
+    .all(requireAuth)
     .get((req, res, next) => {
         entryService.getAllEntry(req.app.get('db'))
             .then(entry => {
@@ -45,6 +46,7 @@ entryRouter
 
 entryRouter
     .route("/:entryId")
+    .all(requireAuth)
     .all((req, res, next) => {
         entryService.getById(req.app.get('db'), req.params.entryId)
             .then(entry => {

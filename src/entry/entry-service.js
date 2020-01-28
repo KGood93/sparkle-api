@@ -34,4 +34,4 @@ const entryService = {
     }
 }
 
-module.exports = entryService
+module.exports = entryService 

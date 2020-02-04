@@ -20,26 +20,34 @@ authRouter
             loginUser.username
         )
             .then(dbUser => {
-                if (!dbUser)
+                if(!dbUser)
                     return res.status(400).json({
-                        error: 'Incorrect username or password',
+                        error: 'Incorrect username or password'
                     })
-                    console.log(dbUser.password)
+
                 return AuthService.comparePasswords(loginUser.password, dbUser.password)
                     .then(compareMatch => {
                         if(!compareMatch)
                             return res.status(400).json({
-                                error: 'Incorrect user_name or password',
+                                error: 'Incorrect username or password'
                             })
-                            
+
                         const sub = dbUser.username
                         const payload = {userid: dbUser.id}
                         res.send({
-                            authToken: AuthService.createJwt(sub, payload),
+                            authToken: AuthService.createJwt(sub, payload)
                         })
                     })
             })
             .catch(next)
     })
 
-module.exports = authRouter    
+    authRouter.post('/refresh', (req, res) => {
+        const sub = req.user.username
+        const payload = {userid: req.user.userid}
+        res.send({
+            authToken: AuthService.createJwt(sub, payload)
+        })
+    })
+
+module.exports = authRouter

@@ -31,12 +31,6 @@ describe(`Journal service object`, function() {
 
     before(() => db('sparkle_journal').truncate())
 
-    //before(() => {
-    //    return db
-    //        .into('sparkle_journal')
-    //        .insert(testJournals)
-    //})
-
     afterEach(() => db('sparkle_journal').truncate())
 
     after(() => db.destroy())

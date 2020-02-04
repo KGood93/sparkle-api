@@ -29,10 +29,10 @@ function makeUsersArray() {
   ]
 }
 
-function makeArticlesFixtures() {
+function makeJournalFixtures() {
   const testUsers = makeUsersArray()
-  //const testArticles = makeArticlesArray(testUsers)
-  //const testComments = makeCommentsArray(testUsers, testArticles)
+  const testArticles = makeJournalArray(testUsers)
+  const testComments = makeEntryArray(testUsers, testArticles)
   return { testUsers }
 }
 

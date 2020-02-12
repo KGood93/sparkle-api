@@ -7,8 +7,8 @@ const {NODE_ENV, CLIENT_ORIGIN} = require('./config')
 const entryRouter = require('./entry/entry-router')
 const journalRouter = require('./journal/journal-router')
 const quoteRouter = require('./quotes/quote-router')
-const authRouter = require('./auth/auth-router')
-const usersRouter = require('./users/users-router')
+//const authRouter = require('./auth/auth-router')
+//const usersRouter = require('./users/users-router')
 
 const app = express()
 
@@ -21,25 +21,31 @@ const morganOption = (NODE_ENV === 'production')
 app.use(morgan(morganOption))
 app.use(helmet())
 
-const whiteList = ['https://sparkle-app.now.sh', 'https://sparkle-app-1bojitddx.now.sh', 'https://sparkle-app.goodreaukath.now.sh']
+app.use(
+    cors({
+        origin: CLIENT_ORIGIN
+    })
+);
 
-const corsOptions = {
-    origin: function(origin, callback) {
-        if(whiteList.indexOf(origin) !== -1) {
-            callback(null,true)
-        }
-        else {
-            callback(new Error('Not allowed by CORS'))
-        }
-    }
-}
+//const whiteList = ['https://sparkle-app.now.sh', 'https://sparkle-app-1bojitddx.now.sh', 'https://sparkle-app.goodreaukath.now.sh']
 
-if(NODE_ENV === 'production') {
-    app.use(cors(corsOptions))
-}
-else {
-    app.use(cors())
-}
+//const corsOptions = {
+//    origin: function(origin, callback) {
+//        if(whiteList.indexOf(origin) !== -1) {
+//            callback(null,true)
+//        }
+//        else {
+//            callback(new Error('Not allowed by CORS'))
+//        }
+//    }
+//}
+
+//if(NODE_ENV === 'production') {
+//    app.use(cors(corsOptions))
+//}
+//else {
+//    app.use(cors())
+//}
 
 
 

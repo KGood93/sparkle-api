@@ -23,7 +23,7 @@ entryRouter
             })
             .catch(next)
     })
-    .post(requireAuth, jsonParser, (req, res, next) => {
+    .post(jsonParser, (req, res, next) => {
         const {title, journalid, content, quoteid} = req.body
         const newEntry = {title, journalid, content, quoteid}
 

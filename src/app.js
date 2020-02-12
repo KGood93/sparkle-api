@@ -49,7 +49,7 @@ app.use('/quote', quoteRouter)
 //app.use('/auth', authRouter)
 //app.use('/users', usersRouter)
 
-app.get('/', cors(corsOptions), (req, res) => {
+app.get('/', (req, res) => {
     res.send('Hello, world!')
 })
 

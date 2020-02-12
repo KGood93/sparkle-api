@@ -20,18 +20,36 @@ const morganOption = (NODE_ENV === 'production')
 
 app.use(morgan(morganOption))
 app.use(helmet())
-app.use(
-    cors(
-        {origin: CLIENT_ORIGIN}
-))
+
+const whiteList = ['https://sparkle-app.now.sh', 'https://sparkle-app-1bojitddx.now.sh', 'https://sparkle-app.goodreaukath.now.sh']
+
+const corsOptions = {
+    origin: function(origin, callback) {
+        if(whiteList.indexOf(origin) !== -1) {
+            callback(null,true)
+        }
+        else {
+            callback(new Error('Not allowed by CORS'))
+        }
+    }
+}
+
+if(NODE_ENV === 'production') {
+    app.use(cors(corsOptions))
+}
+else {
+    app.use(cors())
+}
+
+
 
 app.use('/entry', entryRouter)
 app.use('/journal', journalRouter)
 app.use('/quote', quoteRouter)
-app.use('/auth', authRouter)
-app.use('/users', usersRouter)
+//app.use('/auth', authRouter)
+//app.use('/users', usersRouter)
 
-app.get('/', (req, res) => {
+app.get('/', cors(corsOptions), (req, res) => {
     res.send('Hello, world!')
 })
 

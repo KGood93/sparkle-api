@@ -5,5 +5,5 @@ module.exports = {
     JWT_SECRET: process.env.JWT_SECRET || 'change-this-secret',
     JWT_EXPIRY:process.env.JWT_EXPIRY || '200000s',
     TEST_DATABASE_URL: process.env.TEST_DATABASE_URL || 'postgresql://Katy:test@localhost/sparkle-api-test',
-    CLIENT_ORIGIN: 'https://sparkle-app.now.sh'
+    CLIENT_ORIGIN: ['https://sparkle-app.now.sh', 'https://sparkle-app-1bojitddx.now.sh', 'https://sparkle-app.goodreaukath.now.sh']
 }

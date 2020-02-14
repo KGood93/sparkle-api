@@ -86,7 +86,7 @@ entryRouter
             entryToUpdate
         )
             .then(numRowsAffected => {
-                res.status(204).end()
+                res.status(200).end()
             })
             .catch(next)
     })

@@ -65,7 +65,7 @@ entryRouter
     .delete((req, res, next) => {
         entryService.deleteEntry(req.app.get('db'), req.params.entryId)
             .then(numRowsAffected => {
-                res.status(200).end()
+                res.status(200).json({'numRowsAffected': numRowsAffected})
             })
             .catch(next)
     })
